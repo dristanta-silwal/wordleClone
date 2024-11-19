@@ -1,102 +1,325 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
-
-:root{
-    --font-family: 'Roboto Slab', serif;
-}
-
-*{
-    background-color: black;
-    /* box-sizing: border-box; */
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #121213;
+    color: white;
     margin: 0;
-    padding: 0;
+    padding: 20px;
 }
 
-.game{
-    width: 100%;
-    max-width: 600px;
-    height: 100vh;
-    margin: 0 auto;
+h1 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
 
+/* Game Board Styling */
+#board {
+    display: grid;
+    grid-template-rows: repeat(6, 60px);
+    gap: 10px;
+    justify-content: center;
+    margin: 20px auto;
+    width: 320px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(5, 60px);
+    gap: 10px;
+}
+
+.box {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3a3a3c;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border: 2px solid #3a3a3c;
+    text-transform: uppercase;
+}
+
+.box.correct {
+    background-color: #538d4e;
+}
+
+.box.present {
+    background-color: #b59f3b;
+}
+
+.box.absent {
+    background-color: #3a3a3c;
+    opacity: 0.5;
+}
+
+/* Keyboard Styling */
+#keyboard {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 10px;
+    margin: 20px auto;
+    width: 90%;
+    /* Dynamic width */
+    max-width: 400px;
 }
 
-h1{
-    padding-top: 20px;
-    color: white;
-}
-
-.outer-box{
+.keyboard-row {
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-    overflow: hidden;
+    gap: 5px;
 }
 
-.box{
-    width: 350px;
-    height: 420px;
-
-    display: grid;
-    grid-template-rows: repeat(6, 1fr);
-    grid-gap: 5px;
+.key {
     padding: 10px;
-    box-sizing: border-box;
-}
-
-.box-row{
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 5px;
-}
-
-.boxes{
-    border: 2px solid white;
+    background-color: #818384;
     color: white;
-
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size: 2rem;
-    font-weight: bolder;
-    text-transform: uppercase;
-    line-height: 2rem;
-}
-
-/* Keyboard */
-#keyboard{
-    width: 100%;
-    margin: 0.8px;
-    user-select: none;
-}
-
-.row{
-    display: flex;
-    width: 100%;
-    margin: 0 auto 8px;
-    touch-action: manipulation;
-}
-
-button{
-    font-family: inherit;
-    font-weight: bold;
-    border: 0;
-    padding: 0;
-    margin: 0 6px 0 0;
-    height: 58px;
-    border-radius: 4px;
+    border: none;
+    font-size: 16px;
     cursor: pointer;
-    user-select: none;
-    
-    background-color: gray;
-    color: white;
-
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     text-transform: uppercase;
+    border-radius: 5px;
+    text-align: center;
+    flex: 1;
+    /* Equal width for keys */
+    max-width: 40px;
+    /* Limit key size */
+}
+
+.key.spacer {
+    visibility: hidden;
+    flex: 0.5;
+}
+
+.key.correct {
+    background-color: #538d4e;
+}
+
+.key.present {
+    background-color: #b59f3b;
+}
+
+.key.absent {
+    background-color: #3a3a3c;
+    opacity: 0.5;
+}
+
+.key.special {
+    background-color: #565758;
+    font-weight: bold;
+    text-transform: none;
+    max-width: 80px;
+}
+
+.key.special:hover {
+    background-color: #818384;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    #keyboard {
+        max-width: 300px;
+    }
+
+    .key {
+        padding: 8px;
+        font-size: 14px;
+        max-width: 35px;
+    }
+
+    .key.special {
+        max-width: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    #keyboard {
+        max-width: 100%;
+    }
+
+    .key {
+        padding: 6px;
+        font-size: 12px;
+        max-width: 30px;
+    }
+
+    .key.special {
+        max-width: 60px;
+    }
+}
+
+
+
+
+/* Button Styling */
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #818384;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button.hidden {
+    display: none;
+}
+
+/* Modal Styling */
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #3a3a3c;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: left;
+    max-width: 90%;
+}
+
+.modal-content ul {
+    padding-left: 20px;
+}
+
+.example {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.example.correct {
+    background-color: #538d4e;
+}
+
+.example.present {
+    background-color: #b59f3b;
+}
+
+.example.absent {
+    background-color: #3a3a3c;
+    opacity: 0.5;
+}
+
+#message {
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #538d4e;
+    color: white;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#message.hidden {
+    display: none;
+}
+
+#message.error {
+    background-color: #b91c1c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    #board {
+        width: 100%;
+        max-width: 90%;
+        gap: 8px;
+    }
+
+    .row {
+        grid-template-columns: repeat(5, 50px);
+        gap: 8px;
+    }
+
+    .box {
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+    }
+
+    #keyboard {
+        grid-template-columns: repeat(10, 1fr);
+        gap: 4px;
+        width: 100%;
+    }
+
+    .key {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .modal-content {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    #board {
+        width: 90%;
+        gap: 6px;
+    }
+
+    .row {
+        grid-template-columns: repeat(5, 40px);
+        gap: 6px;
+    }
+
+    .box {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    #keyboard {
+        gap: 3px;
+    }
+
+    .key {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .modal-content {
+        font-size: 14px;
+    }
 }

@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wordle Clone</title>
     <link rel="stylesheet" href="style.css">
@@ -11,91 +10,75 @@
 </head>
 
 <body>
-    <div class="game">
-        <h1>Wordle Clone</h1>
-        <div class="outer-box">
-            <div class="box">
-                <div class="box-row" id="row1">
-                    <div class="boxes" id="box1"></div>
-                    <div class="boxes" id="box2"></div>
-                    <div class="boxes" id="box3"></div>
-                    <div class="boxes" id="box4"></div>
-                    <div class="boxes" id="box5"></div>
-                </div>
-                <div class="box-row" id="row2">
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                </div>
-                <div class="box-row" id="row3">
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                </div>
-                <div class="box-row">
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                </div>
-                <div class="box-row">
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                </div>
-                <div class="box-row">
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                    <div class="boxes"></div>
-                </div>
-            </div>
-        </div>
-        <div id="keyboard">
-            <div class="row">
-                <button data-key="81" class="keyboard-button">q</button>
-                <button data-key="87" class="keyboard-button">w</button>
-                <button data-key="69" class="keyboard-button">e</button>
-                <button data-key="82" class="keyboard-button">r</button>
-                <button data-key="84" class="keyboard-button">t</button>
-                <button data-key="89" class="keyboard-button">y</button>
-                <button data-key="85" class="keyboard-button">u</button>
-                <button data-key="73" class="keyboard-button">i</button>
-                <button data-key="79" class="keyboard-button">o</button>
-                <button data-key="80" class="keyboard-button">p</button>
-            </div>
-            <div class="row">
-                <button data-key="65" class="keyboard-button">a</button>
-                <button data-key="83" class="keyboard-button">s</button>
-                <button data-key="68" class="keyboard-button">d</button>
-                <button data-key="70" class="keyboard-button">f</button>
-                <button data-key="71" class="keyboard-button">g</button>
-                <button data-key="72" class="keyboard-button">h</button>
-                <button data-key="74" class="keyboard-button">j</button>
-                <button data-key="75" class="keyboard-button">k</button>
-                <button data-key="76" class="keyboard-button">l</button>
-            </div>
-            <div class="row">
-                <button data-key="13" class="keyboard-button">enter</button>
-                <button data-key="90" class="keyboard-button">z</button>
-                <button data-key="88" class="keyboard-button">x</button>
-                <button data-key="67" class="keyboard-button">c</button>
-                <button data-key="86" class="keyboard-button">v</button>
-                <button data-key="66" class="keyboard-button">b</button>
-                <button data-key="78" class="keyboard-button">n</button>
-                <button data-key="77" class="keyboard-button">m</button>
-                <button data-key="8" class="keyboard-button">del</button>
-            </div>
+    <div id="rules-modal" class="modal">
+        <div class="modal-content">
+            <h2>How to Play Wordle</h2>
+            <p>Guess the 5-letter word in six attempts.</p>
+            <p>Each guess must be a valid 5-letter word.</p>
+            <p>After you enter your guess, press ENTER.</p>
+            <p>The color of the tiles will change to show how close your guess was to the word:</p>
+            <ul>
+                <li><span class="example correct">G</span> is in the word and in the correct position.</li>
+                <li><span class="example present">A</span> is in the word but in the wrong position.</li>
+                <li><span class="example absent">T</span> is not in the word.</li>
+            </ul>
+            <button id="start-game">Start Game</button>
         </div>
     </div>
+
+    <h1>Wordle Clone</h1>
+    <div id="board"></div>
+    <div id="keyboard">
+        <!-- Row 1 -->
+        <div class="keyboard-row">
+            <div class="key">Q</div>
+            <div class="key">W</div>
+            <div class="key">E</div>
+            <div class="key">R</div>
+            <div class="key">T</div>
+            <div class="key">Y</div>
+            <div class="key">U</div>
+            <div class="key">I</div>
+            <div class="key">O</div>
+            <div class="key">P</div>
+        </div>
+        <!-- Row 2 -->
+        <div class="keyboard-row">
+            <div class="key spacer"></div>
+            <div class="key">A</div>
+            <div class="key">S</div>
+            <div class="key">D</div>
+            <div class="key">F</div>
+            <div class="key">G</div>
+            <div class="key">H</div>
+            <div class="key">J</div>
+            <div class="key">K</div>
+            <div class="key">L</div>
+            <div class="key spacer"></div>
+        </div>
+        <!-- Row 3 -->
+        <div class="keyboard-row">
+            <div class="key spacer"></div>
+            <div class="key spacer"></div>
+            <div class="key">Z</div>
+            <div class="key">X</div>
+            <div class="key">C</div>
+            <div class="key">V</div>
+            <div class="key">B</div>
+            <div class="key">N</div>
+            <div class="key">M</div>
+            <div class="key spacer"></div>
+            <div class="key spacer"></div>
+        </div>
+        <!-- Row 4 -->
+        <div class="keyboard-row">
+            <div class="key special">Enter</div>
+            <div class="key special">Backspace</div>
+        </div>
+    </div>
+    <button id="reset-game" class="hidden">Reset</button>
+    <button id="play-again" class="hidden">Play Again</button>
+    <div id="message" class="hidden"></div>
 </body>
 
 </html>
