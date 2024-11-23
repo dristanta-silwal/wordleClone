@@ -119,13 +119,13 @@ h1 {
 }
 
 /* Responsive Design for Smaller Screens */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     #keyboard {
         max-width: 300px;
     }
 
     .key {
-        padding: 8px;
+        margin: 5px;
         font-size: 14px;
         max-width: 35px;
     }
@@ -137,7 +137,7 @@ h1 {
 
 @media (max-width: 480px) {
     #keyboard {
-        max-width: 100%;
+        max-width: 95%;
     }
 
     .key {
@@ -241,20 +241,19 @@ button.hidden {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     h1 {
         font-size: 1.5rem;
     }
 
     #board {
         width: 100%;
-        max-width: 90%;
-        gap: 8px;
+        max-width: 100%;
     }
 
     .row {
         grid-template-columns: repeat(5, 50px);
-        gap: 8px;
+        gap: 12px;
     }
 
     .box {
@@ -270,13 +269,13 @@ button.hidden {
     }
 
     .key {
-        padding: 8px;
-        font-size: 14px;
+        padding: 12px;
+        font-size: 20px;
     }
 
     button {
-        font-size: 14px;
-        padding: 8px 16px;
+        font-size: 20px;
+        padding: 12px 20px;
     }
 
     .modal-content {
@@ -291,17 +290,18 @@ button.hidden {
 
     #board {
         width: 90%;
-        gap: 6px;
+        gap: 1px;
+        grid-template-rows: repeat(6, 40px);
     }
 
     .row {
-        grid-template-columns: repeat(5, 40px);
-        gap: 6px;
+        grid-template-columns: repeat(5, 30px);
+        gap: 10px;
     }
 
     .box {
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         font-size: 14px;
     }
 
@@ -311,12 +311,12 @@ button.hidden {
 
     .key {
         padding: 6px;
-        font-size: 12px;
+        font-size: 20px;
     }
 
     button {
         font-size: 12px;
-        padding: 6px 12px;
+        padding: 8px 18px;
     }
 
     .modal-content {

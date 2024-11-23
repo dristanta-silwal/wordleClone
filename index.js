@@ -69,7 +69,6 @@ function resetKeyboard() {
         keyboard.appendChild(rowDiv);
     });
 
-    // Add special keys (Enter and Backspace)
     const specialRow = document.createElement('div');
     specialRow.className = 'keyboard-row';
 
@@ -81,7 +80,7 @@ function resetKeyboard() {
 
     const backspaceKey = document.createElement('div');
     backspaceKey.className = 'key special';
-    backspaceKey.textContent = 'Backspace';
+    backspaceKey.textContent = 'Del';
     backspaceKey.addEventListener('click', () => {
         currentGuess = currentGuess.slice(0, -1);
         updateCurrentRow();
