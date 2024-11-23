@@ -2,6 +2,8 @@
 
 A browser-based clone of the popular word game **Wordle**, built with **HTML**, **CSS**, and **JavaScript**. This project allows users to guess a randomly chosen 5-letter word in six attempts with helpful feedback to guide their guesses.
 
+
+[Live Preview](https://dristanta-silwal.github.io/wordleClone/)
 ![Screenshot](assets/gameplay.png)
 
 ---
